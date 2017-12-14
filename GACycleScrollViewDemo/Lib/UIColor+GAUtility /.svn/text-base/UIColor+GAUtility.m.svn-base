@@ -1,0 +1,53 @@
+//
+//  UIColor+GAUtility.m
+//  GATouchRippleViewDemo
+//
+//  Created by GikkiAres on 2016/12/1.
+//  Copyright © 2016年 Explorer. All rights reserved.
+//
+
+#import "UIColor+GAUtility.h"
+
+@implementation UIColor (GAUtility)
++(instancetype)randomColor {
+    CGFloat red = (arc4random()%101)/100.0;
+    CGFloat green = (arc4random()%101)/100.0;
+    CGFloat blue = (arc4random()%101)/100.0;
+    return [UIColor colorWithRed:red green:green blue:blue alpha:1];
+}
++ (UIColor *)colorWithHex:(long)hexColor
+{
+    return [UIColor colorWithHex:hexColor alpha:1];
+}
+
++ (UIColor *)colorWithHex:(long)hexColor alpha:(float)opacity
+{
+    float red = ((float)((hexColor & 0xFF0000) >> 16))/255.0;
+    float green = ((float)((hexColor & 0xFF00) >> 8))/255.0;
+    float blue = ((float)(hexColor & 0xFF))/255.0;
+    return [UIColor colorWithRed:red green:green blue:blue alpha:opacity];
+}
+
++(instancetype)colorWithR:(CGFloat)r g:(CGFloat)g b:(CGFloat)b a:(CGFloat)a {
+     return [UIColor colorWithRed:r/255 green:g/255 blue:b/255 alpha:a];
+}
+
++(instancetype)colorWithRGBADecimalString:(NSString *)str {
+    NSArray *arrColorComponent = [str componentsSeparatedByString:@","];
+    if (arrColorComponent.count==3) {
+        return [UIColor colorWithR:[arrColorComponent[0] doubleValue] g:[arrColorComponent[1] doubleValue]  b:[arrColorComponent[2] doubleValue]  a:1];
+    }
+    else if(arrColorComponent.count==4)  {
+        return [UIColor colorWithR:[arrColorComponent[0] doubleValue] g:[arrColorComponent[1] doubleValue]  b:[arrColorComponent[2] doubleValue]  a:[arrColorComponent[3] doubleValue]];
+    }
+    else {
+        return [UIColor whiteColor];
+    }
+}
+
++(instancetype)colorWithRGBHexString:(NSString *)str {
+    return [UIColor whiteColor];
+}
+
+
+@end
